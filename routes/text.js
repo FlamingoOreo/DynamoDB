@@ -11,22 +11,16 @@ router.get('/', async function(req, res, next) {
   res.send(list);
 });
 
-router.get('/:key', async function(req, res, next) {
-  let item = await text.get(req.params.key);
-  res.send(item);
-});
 
 router.post('/', async function(req, res, next) {
   const {content} = req.body;
-  await text.set(text, {
+  await text.set("content", {
     Content: content,
   })
-  res.end();
+  res.json({
+    status: "success",
+    content: content
+  })
 });
 
-
-router.delete('/:key', async function(req, res, next) {
-  await text.delete(req.params.key);
-  res.end();
-});
 module.exports = router;
